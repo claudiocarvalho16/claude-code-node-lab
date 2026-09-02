@@ -1,3 +1,8 @@
+import {
+  ArgumentMetadata,
+  BadRequestException,
+  ParseEnumPipe,
+} from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TaskStatus } from './task.model';
 import { TasksController } from './tasks.controller';
@@ -56,14 +61,53 @@ describe('TasksController', () => {
   });
 
   describe('findAll', () => {
-    it('delegates to the service and returns its result', () => {
+    it('delegates to the service and returns its result when no status is given', () => {
       const tasks = [task];
       findAll.mockReturnValue(tasks);
 
       const result = controller.findAll();
 
-      expect(findAll).toHaveBeenCalled();
+      expect(findAll).toHaveBeenCalledWith(undefined);
       expect(result).toBe(tasks);
+    });
+
+    it('delegates the given status to the service', () => {
+      const tasks = [task];
+      findAll.mockReturnValue(tasks);
+
+      const result = controller.findAll(TaskStatus.TODO);
+
+      expect(findAll).toHaveBeenCalledWith(TaskStatus.TODO);
+      expect(result).toBe(tasks);
+    });
+  });
+
+  describe('status query validation', () => {
+    const metadata: ArgumentMetadata = { type: 'query', data: 'status' };
+    const pipe = new ParseEnumPipe(TaskStatus, { optional: true });
+
+    it('allows the query param to be absent', async () => {
+      await expect(
+        pipe.transform(undefined, metadata),
+      ).resolves.toBeUndefined();
+    });
+
+    it('accepts a valid status', async () => {
+      await expect(
+        pipe.transform(TaskStatus.IN_PROGRESS, metadata),
+      ).resolves.toBe(TaskStatus.IN_PROGRESS);
+    });
+
+    it('rejects an invalid status with a 400', async () => {
+      await expect(pipe.transform('INVALID', metadata)).rejects.toBeInstanceOf(
+        BadRequestException,
+      );
+    });
+
+    it('rejects an empty status with a 400', async () => {
+      await expect(pipe.transform('', metadata)).rejects.toBeInstanceOf(
+        BadRequestException,
+      );
     });
   });
 

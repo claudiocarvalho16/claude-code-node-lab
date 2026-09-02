@@ -58,6 +58,25 @@ describe('TasksService', () => {
 
       expect(service.findAll()).toHaveLength(2);
     });
+
+    it('returns only tasks matching the given status', () => {
+      service.create({ title: 'A', description: 'A desc' });
+      const inProgress = service.create({
+        title: 'B',
+        description: 'B desc',
+        status: TaskStatus.IN_PROGRESS,
+      });
+
+      const result = service.findAll(TaskStatus.IN_PROGRESS);
+
+      expect(result).toEqual([inProgress]);
+    });
+
+    it('returns an empty array when no task matches the given status', () => {
+      service.create({ title: 'A', description: 'A desc' });
+
+      expect(service.findAll(TaskStatus.DONE)).toEqual([]);
+    });
   });
 
   describe('findOne', () => {

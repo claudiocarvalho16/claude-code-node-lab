@@ -6,11 +6,14 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseEnumPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { TaskStatus } from './task.model';
 import type { Task } from './task.model';
 import { TasksService } from './tasks.service';
 
@@ -24,8 +27,11 @@ export class TasksController {
   }
 
   @Get()
-  findAll(): Task[] {
-    return this.tasksService.findAll();
+  findAll(
+    @Query('status', new ParseEnumPipe(TaskStatus, { optional: true }))
+    status?: TaskStatus,
+  ): Task[] {
+    return this.tasksService.findAll(status);
   }
 
   @Get(':id')

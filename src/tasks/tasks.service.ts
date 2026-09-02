@@ -23,8 +23,13 @@ export class TasksService {
     return task;
   }
 
-  findAll(): Task[] {
-    return Array.from(this.tasks.values());
+  findAll(status?: TaskStatus): Task[] {
+    const tasks = Array.from(this.tasks.values());
+    if (status === undefined) {
+      return tasks;
+    }
+
+    return tasks.filter((task) => task.status === status);
   }
 
   findOne(id: string): Task {
