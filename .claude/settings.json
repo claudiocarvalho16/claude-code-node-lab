@@ -14,5 +14,16 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "review-change@claude-code-node-lab": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-node-lab": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/claudiocarvalho16/claude-code-node-lab.git"
+      }
+    }
   }
 }
