@@ -1,6 +1,7 @@
 {
   "enabledPlugins": {
-    "review-change@claude-code-node-lab": true
+    "review-change@claude-code-node-lab": true,
+    "controlled-investigation@claude-code-node-lab": true
   },
   "extraKnownMarketplaces": {
     "claude-code-node-lab": {
