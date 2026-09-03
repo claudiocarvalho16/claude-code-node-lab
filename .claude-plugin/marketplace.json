@@ -10,6 +10,12 @@
       "source": "./plugins/review-change",
       "description": "Reusable read-only review workflow for evaluating uncommitted repository changes before commit.",
       "version": "0.1.0"
+    },
+    {
+      "name": "controlled-investigation",
+      "source": "./plugins/controlled-investigation",
+      "description": "Reusable controlled failure investigation workflow with tiered agents and guarded Bash execution.",
+      "version": "0.1.0"
     }
   ]
 }

@@ -30,7 +30,7 @@
 // (exit 0, empty stdout), regardless of what the command itself looks like. This
 // includes the main thread (no `agent_type` at all) and any other agent, built-in or
 // custom. A missing `agent_type` is an expected, valid case here, not an error.
-const MANAGED_AGENT_TYPES = new Set(['failure-investigator-n1', 'failure-investigator-n2']);
+const MANAGED_AGENT_TYPES = new Set(['controlled-investigation:failure-investigator-n1', 'controlled-investigation:failure-investigator-n2']);
 
 const DENY_REASON =
   'Failure investigators cannot run Git operations that rewrite history, discard changes, or affect the remote (commit, push, pull, merge, rebase, reset, restore, clean).';

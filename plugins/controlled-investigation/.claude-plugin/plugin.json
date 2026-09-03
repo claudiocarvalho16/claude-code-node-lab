@@ -1,0 +1,8 @@
+{
+  "name": "controlled-investigation",
+  "description": "Reusable controlled failure investigation workflow with tiered agents and guarded Bash execution.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Claudio Carvalho"
+  }
+}

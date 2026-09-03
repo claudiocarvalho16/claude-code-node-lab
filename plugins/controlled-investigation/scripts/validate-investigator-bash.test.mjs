@@ -22,8 +22,8 @@ const VALIDATOR_PATH = path.join(
   'validate-investigator-bash.mjs',
 );
 
-const N1 = 'failure-investigator-n1';
-const N2 = 'failure-investigator-n2';
+const N1 = 'controlled-investigation:failure-investigator-n1';
+const N2 = 'controlled-investigation:failure-investigator-n2';
 
 // ---- helpers ---------------------------------------------------------
 
