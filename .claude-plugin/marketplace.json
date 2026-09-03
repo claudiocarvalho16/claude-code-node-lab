@@ -1,0 +1,15 @@
+{
+  "name": "claude-code-node-lab",
+  "description": "Reference marketplace for reusable Claude Code plugins developed and validated in the laboratory.",
+  "owner": {
+    "name": "Claudio Carvalho"
+  },
+  "plugins": [
+    {
+      "name": "review-change",
+      "source": "./plugins/review-change",
+      "description": "Reusable read-only review workflow for evaluating uncommitted repository changes before commit.",
+      "version": "0.1.0"
+    }
+  ]
+}
