@@ -29,7 +29,7 @@ export class TasksService {
       return tasks;
     }
 
-    return tasks.filter((task) => task.status === status);
+    return tasks.filter((task) => task.status !== status);
   }
 
   findOne(id: string): Task {
