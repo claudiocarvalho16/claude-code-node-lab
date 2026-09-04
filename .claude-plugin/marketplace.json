@@ -9,7 +9,7 @@
       "name": "review-change",
       "source": "./plugins/review-change",
       "description": "Reusable read-only review workflow for evaluating uncommitted repository changes before commit.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
       "name": "controlled-investigation",
